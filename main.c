@@ -1,9 +1,7 @@
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
 
 #define R				9
-//#define PICKED_NUMBER	3
 
 #define matrixRowLength		3
 #define matrixColLength		5
@@ -56,7 +54,7 @@ int main(int argc, char** argv) {
 
 	int PICKED_NUMBER = atoi(argv[1]);
 	if (PICKED_NUMBER < 0 || PICKED_NUMBER > 9) {
-		printf("Incorrect input: %d",PICKED_NUMBER);
+		printf("Incorrect input: %d\n",PICKED_NUMBER);
 		return 1;
 	}
 
@@ -70,14 +68,12 @@ int main(int argc, char** argv) {
 			if (rowIndex != PICKED_NUMBER) {
 				sub(rowLength,rows[rowIndex],weights);
 				overloop = overloopConstant;
-				goto finally;
 			}
 		}
 		else {
 			if (rowIndex == PICKED_NUMBER) {
 				add(rowLength,rows[rowIndex],weights);
 				overloop = overloopConstant;
-				goto finally;
 			}
 		}
 		rowIndex++;
@@ -85,10 +81,6 @@ int main(int argc, char** argv) {
 			rowIndex = 0;
 			overloop--;
 		}
-
-		finally:
-		//printWeights(rowLength,weights);
-		;
 	}
 	printWeights(rowLength,weights);
 	return 0;
